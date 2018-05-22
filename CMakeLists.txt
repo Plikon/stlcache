@@ -68,6 +68,10 @@ ADD_EXECUTABLE(test_adaptive tests/test_adaptive.cpp)
 target_link_libraries(test_adaptive ${Boost_LIBRARIES})
 ADD_TEST(ARP test_adaptive)
 
+ADD_EXECUTABLE(test_insert_assign tests/test_insert_assign.cpp)
+target_link_libraries(test_insert_assign ${Boost_LIBRARIES})
+ADD_TEST(IA test_insert_assign)
+
 ADD_EXECUTABLE(test_insert_perf tests/test_insert_perf.cpp)
 target_link_libraries(test_insert_perf ${Boost_LIBRARIES})
 

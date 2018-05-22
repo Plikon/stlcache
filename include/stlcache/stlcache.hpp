@@ -512,6 +512,23 @@ namespace stlcache {
             return result;
         }
 
+        /*
+         * insert_or_assign
+         */
+        bool insert_or_assign(Key _k, Data _d) {
+            if(this->_storage.find(_k)==this->_storage.end()){
+                return this->insert(_k, _d);
+            }
+            
+            _policy->touch(_k);
+            _storage.erase(_k);
+            return _storage.insert(value_type(_k,_d)).second;
+        }
+        /*
+         *Merge implementation
+         */
+            //void merge(std::map<Key, T, cache, Allocator>& source);
+
         /*!
          * \brief Maximum cache size accessor
          *
@@ -616,6 +633,8 @@ namespace stlcache {
             policyAlloc.construct(this->_policy,localPolicy);
             return *this;
         }
+
+
 
         /*!
          * \brief A copy constructor
