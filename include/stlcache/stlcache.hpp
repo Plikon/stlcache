@@ -525,9 +525,13 @@ namespace stlcache {
             return _storage.insert(value_type(_k,_d)).second;
         }
         /*
-         *Merge implementation
+         *Merge implementation - WIP
          */
-            //void merge(std::map<Key, T, cache, Allocator>& source);
+            void merge(const cache<Key, Data, Policy, Compare, Allocator>& second){
+                for (auto it = second._storage.begin(); it != second._storage.end(); it++) {
+                    this->insert_or_assign(it->first, it->second);
+                }
+            }
 
         /*!
          * \brief Maximum cache size accessor
